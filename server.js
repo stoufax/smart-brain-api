@@ -28,10 +28,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-app.get('/',(req,res) => {
-    db.select('*').from('users')
-    .then(user =>  res.json(user))
-})
+app.get('/',(req,res) => { res.send('its working')})
 
 app.post('/signin', (req, res) => {signin.handleSignin(req, res, db, bcrypt)})
 
@@ -41,7 +38,7 @@ app.get('/profile/:id', (req, res) => {profile.handleProfile(req, res, db)})
 
 app.put('/image', (req, res) => {image.handleImage(req, res, db)})
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('server is running')
 })
 
